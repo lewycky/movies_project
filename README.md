@@ -1,3 +1,0 @@
-# movies_project
-
-TODO
