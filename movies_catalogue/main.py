@@ -2,19 +2,16 @@ from flask import Flask, render_template,request
 import tmdb_client
 
 
-
-
-
 app = Flask(__name__)
 
-type_list = ["Popular", "Top Rated", "Upcoming", "Now Playing"]
+type_list = ["popular", "now_playing", "top_rated", "upcoming"]
 
 @app.route('/')
 def homepage():
     selected_list = request.args.get("list_type", "popular")
     if selected_list not in type_list:
         selected_list = "popular"
-    movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
+    movies = tmdb_client.get_movies(how_many=16, list_type=selected_list)
 
     return render_template("homepage.html",movies=movies, current_list=selected_list, new_list=type_list)
 
